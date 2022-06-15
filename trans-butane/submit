@@ -1,0 +1,14 @@
+#!/bin/bash
+#SBATCH --job-name=trans-butane-vdw-df
+#SBATCH --output="trans-butane-vdw-df.o"
+#SBATCH --error="trans-butane-vdw-df.e"
+#SBATCH --account="thonhauserGrp"
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=16
+#SBATCH --cpus-per-task=1
+#SBATCH --time=1-00:00:00
+#SBATCH --partition="small"
+#SBATCH --mem=80Gb
+ulimit -u unlimited
+module load rhel7/openmpi/4.0.2-intel-2018
+mpirun /deac/thonhauserGrp/chakrad/q-e-vdW-DF3/bin/pw.x < "trans-butane-vdw-df.in" > "trans-butane-vdw-df.out"

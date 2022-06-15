@@ -1,0 +1,64 @@
+&control
+   calculation = 'relax'
+   restart_mode='from_scratch',
+   prefix='trans-butane-vdw-df',
+   tstress = .false.
+   tprnfor = .true.
+   pseudo_dir='/deac/thonhauserGrp/chakrad/calculations/atomandmolecule-qe6.2.1-i2012-C6modif/all_pbe_UPF_v1.5'
+   outdir='.'
+!   wf_collect = .true.
+   verbosity = 'high'
+   forc_conv_thr = 2.0d-5
+   nstep = 200
+/
+
+&system
+   ibrav           = 1   ! 1: sc
+   celldm(1)       = 30.0
+   nat             = 14
+   ntyp            = 2
+   nspin           = 2
+   starting_magnetization = 0.89
+   occupations     = 'smearing'
+   smearing        = 'gaussian'
+   degauss         = 0.002
+   ecutwfc         = 50.0
+   ecutrho         = 600.0
+   input_dft       = 'vdw-df'
+/
+
+&electrons
+   conv_thr        = 1.0d-8
+   mixing_beta     = 0.7
+   electron_maxstep = 1000
+   scf_must_converge = .true.
+   diagonalization  = 'cg'
+   diago_cg_maxiter= 100
+/
+
+&ions
+   ion_dynamics = 'bfgs'
+/
+
+K_POINTS automatic 
+1  1  1  0  0  0
+
+ATOMIC_SPECIES
+   C    12.011000 c_pbe_v1.2.uspp.F.UPF
+   H     1.008000 h_pbe_v1.4.uspp.F.UPF
+
+ATOMIC_POSITIONS {angstrom}
+  C     0.702581     1.820873     0.000000
+  C     0.702581     0.296325     0.000000
+  C    -0.702581    -0.296325     0.000000
+  C    -0.702581    -1.820873     0.000000
+  H     1.719809     2.222340     0.000000
+  H    -1.719809    -2.222340     0.000000
+  H     0.188154     2.210362     0.883614
+  H     0.188154     2.210362    -0.883614
+  H    -0.188154    -2.210362     0.883614
+  H    -0.188154    -2.210362    -0.883614
+  H     1.247707    -0.072660    -0.877569
+  H     1.247707    -0.072660     0.877569
+  H    -1.247707     0.072660    -0.877569
+  H    -1.247707     0.072660     0.877569
